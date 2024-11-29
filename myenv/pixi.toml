@@ -1,0 +1,20 @@
+[project]
+channels = ["conda-forge"]
+description = "Add a short description here"
+name = "myenv"
+platforms = ["win-64"]
+version = "0.1.0"
+
+[tasks]
+
+[dependencies]
+python = "==3.10"
+lime = ">=0.2.0.1,<0.3"
+
+[pypi-dependencies]
+numpy = ">=2.1.3, <3"
+scikit-learn = "*"
+matplotlib = "*"
+pandas = ">=2.2.3, <3"
+ipython = ">=8.29.0, <9"
+black = ">=24.10.0, <25"
