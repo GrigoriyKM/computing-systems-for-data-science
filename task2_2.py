@@ -32,13 +32,22 @@ print("***Explaination***")
 ##### Using lime
 
 feature_list = iris.feature_names
-model_pred = clf.predict(X_test)
+model_pred = clf.predict(X_test_scaled)
 # Create a lime explainer object
 explainer = lime.lime_tabular.LimeTabularExplainer(
     training_data=X_train_scaled,
     mode="classification",
     training_labels=y_train,
     feature_names=feature_list,
+)
+labels = {0: "setosa", 1: "versicolor", 2: "virginica"}
+print(f"Correct class: {model_pred[13]} - {labels[model_pred[13]]}")
+print(
+    clf.predict_proba(
+        [
+            X_test_scaled[13],
+        ]
+    )
 )
 exp = explainer.explain_instance(
     X_test_scaled[13], predict_fn=clf.predict_proba, num_features=4, top_labels=2

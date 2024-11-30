@@ -46,13 +46,23 @@ print("***Explaination***")
 feature_list = cancer.feature_names
 
 
-model_pred = clf.predict(X_test)
+model_pred = clf.predict(X_test_scaled)
 # Create a lime explainer object
+
 explainer = lime.lime_tabular.LimeTabularExplainer(
     training_data=X_train_scaled,
     mode="classification",
     training_labels=y_train,
     feature_names=feature_list,
+)
+labels = {0: "malignant", 1: "benign"}
+print(f"Correct class: {model_pred[3]} - {labels[model_pred[3]]}")
+print(
+    clf.predict_proba(
+        [
+            X_test_scaled[3],
+        ]
+    )
 )
 exp = explainer.explain_instance(
     X_test_scaled[3], predict_fn=clf.predict_proba, num_features=10
